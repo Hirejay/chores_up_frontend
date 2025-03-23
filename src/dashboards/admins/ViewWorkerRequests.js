@@ -17,10 +17,10 @@ export default function ViewWorkerRequests() {
           }
         );
 
-        console.log("API Response:", response.data.pendingProfiles);
+       
         setWorkerRequests(response.data?.pendingProfiles || []);
       } catch (error) {
-        console.error("Error fetching worker requests:", error);
+       
         toast.error("Failed to fetch worker requests");
         setWorkerRequests([]);
       }
@@ -47,7 +47,7 @@ export default function ViewWorkerRequests() {
       toast.success("Worker request accepted successfully");
     } catch (error) {
       toast.error("Error accepting worker request");
-      console.error("Error accepting worker request:", error);
+      
     }
   };
 
@@ -69,7 +69,7 @@ export default function ViewWorkerRequests() {
       toast.success("Worker request rejected successfully");
     } catch (error) {
       toast.error("Error rejecting worker request");
-      console.error("Error rejecting worker request:", error);
+   
     }
   };
 

@@ -17,7 +17,7 @@ export default function ViewActiveWorkers() {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("API Response:", response.data.acceptedProfiles);
+       
         setActiveWorkers(response.data.acceptedProfiles || []);
       } catch (error) {
         console.error("Error fetching active workers:", error);
@@ -43,7 +43,7 @@ export default function ViewActiveWorkers() {
       );
       toast.success("Worker rejected successfully");
     } catch (error) {
-      console.error("Error rejecting worker:", error);
+     
       toast.error("Error rejecting worker");
     }
   };

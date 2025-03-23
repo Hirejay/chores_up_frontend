@@ -9,6 +9,7 @@ import "leaflet-rotate";
 import { useParams, Link  } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./MapStyles.css"; // Add custom styles here
+import toast from "react-hot-toast";
 
 const motorcycleIcon = (bearing) =>
   new L.Icon({
@@ -93,10 +94,12 @@ function ViewActiveServiceMap() {
             duration: duration,
           });
         } else {
-          console.error("Failed to fetch route:", response.data.error);
+        
+          toast.error("Failed to fetch route:", response.data.error);
         }
       } catch (error) {
-        console.error("Error fetching route:", error);
+        
+        toast.error("Error fetching route:", error);
       }
     };
 

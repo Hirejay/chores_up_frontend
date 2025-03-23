@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { LocationContext } from "../../contexts/LocationContext"; // Adjust the import path
 import axios from "axios";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 function ViewActive() {
   const { location, isTracking } = useContext(LocationContext); // Access location and tracking state
@@ -19,13 +20,13 @@ function ViewActive() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (response.data.success) {
-        console.log("Worker location updated successfully.");
-      } else {
-        console.error("Failed to update worker location:", response.data.message);
+      if (!response.data.success){
+        
+        toast.error("Failed to update worker location:", response.data.message);
       }
     } catch (error) {
-      console.error("Error updating worker location:", error);
+      
+      toast.error("Error updating worker location:", error);
     }
   };
 
@@ -35,7 +36,7 @@ function ViewActive() {
       const now = Date.now();
       if (now - lastUpdateTime.current >= 10000) {
         // Check if 10 seconds have passed since the last update
-        console.log("location updated on databse");
+       
         updateWorkerLocation(location.lat, location.lng);
         lastUpdateTime.current = now; // Update the last update time
       }

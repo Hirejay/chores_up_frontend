@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const ActiveServicePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -20,9 +21,10 @@ const ActiveServicePosts = () => {
           }
         );
         setPosts(response.data.tasks);
-        console.log("Fetched tasks:", response.data.tasks);
+        toast.success("Fetched Task Succcessfully");
       } catch (err) {
         setError("Failed to fetch active service posts");
+        toast.error("Failed to fetch active service posts");
       } finally {
         setLoading(false);
       }

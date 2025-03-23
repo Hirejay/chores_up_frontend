@@ -21,14 +21,7 @@ const antennaIcon = new L.Icon({
   iconAnchor: [15, 30],
 });
 
-const defaultLeafletIcon = L.icon({
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
+
 
 function ViewAllServiceRequests() {
   const { token } = useSelector((state) => state.auth);
@@ -48,9 +41,11 @@ function ViewAllServiceRequests() {
         setTasks(response.data.tasks);
       } else {
         console.error("Invalid API response:", response.data);
+        toast.error("Invalid API response");
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);
+      toast.error("Error fetching tasks");
     }
   }, [token]);
 
@@ -149,9 +144,11 @@ function PopupModal({ task, onClose, onTaskAccepted }) {
         setDuration(response.data.route.duration);
       } else {
         console.error("Invalid route response:", response.data);
+        toast.error("Invalid route response");
       }
     } catch (error) {
       console.error("Error fetching route:", error);
+      toast.error("Error fetching route");
     }
   }, [task, token]);
 
@@ -194,6 +191,7 @@ function PopupModal({ task, onClose, onTaskAccepted }) {
       onClose();
     } catch (error) {
       console.error("Error accepting task:", error);
+      toast.error("Error accepting task");
     }
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const NewPassword = () => {
   const { token } = useParams();
@@ -17,20 +18,24 @@ const NewPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match.");
       setError("Passwords do not match.");
       return;
     }
     setError("");
     setLoading(true);
     try {
-      const response = await axios.post(`/api/auth/reset-password`, {
+      const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/auth/reset-password`, {
         token:token,
         password: formData.password,
+        confirmPassword:formData.confirmPassword
       });
       if (response.data.success) {
+        toast.success("Password Reset Successfully");
         setSuccess(true);
       }
     } catch (err) {
+      toast.error("Failed to reset password");
       setError(err.response?.data?.message || "Failed to reset password");
     } finally {
       setLoading(false);

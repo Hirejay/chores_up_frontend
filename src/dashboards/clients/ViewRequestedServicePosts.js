@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const ViewRequestedServicePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -19,8 +20,10 @@ const ViewRequestedServicePosts = () => {
           },
         });
         setPosts(response.data.tasks);
+        toast.success("Fetched Requested Services Successfully");
       } catch (err) {
         setError("Failed to fetch service posts");
+        toast.error("Failed to fetch service posts");
       } finally {
         setLoading(false);
       }
@@ -37,8 +40,10 @@ const ViewRequestedServicePosts = () => {
         },
       });
       setPosts(posts.filter((post) => post._id !== taskId)); // Update the state to remove the canceled task
+      toast.success("Service Request Canceled");
     } catch (err) {
       setError("Failed to cancel the service post");
+      toast.error("Failed to cancel the service post");
     }
   };
 

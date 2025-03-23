@@ -9,7 +9,7 @@ const AddCategory = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { user, token } = useSelector((state) => state.auth);
+  const {  token } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +46,7 @@ const AddCategory = () => {
       setFormData({ categoryName: "", price: "" });
       setSuccess("Category added successfully!");
       toast.success("Category added successfully!");
-      console.log("Category added:", response.data);
+    
     } catch (err) {
       setError(err.response?.data?.message || "Failed to add category. Please try again.");
       toast.error(err.response?.data?.message || "Failed to add category. Please try again.");

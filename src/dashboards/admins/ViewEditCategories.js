@@ -25,7 +25,7 @@ export default function ViewEditCategory() {
       );
       setCategories(response.data.allCategory);
     } catch (error) {
-      console.error("Error fetching categories:", error);
+      
       toast.error("Failed to load categories");
     }
   };
@@ -61,7 +61,7 @@ export default function ViewEditCategory() {
       setShowModal(false);
       fetchCategories();
     } catch (error) {
-      console.error("Error updating category:", error);
+ 
       toast.error("Failed to update category");
     } finally {
       setLoading(false);
@@ -81,7 +81,7 @@ export default function ViewEditCategory() {
       toast.success("Category deleted successfully");
       setCategories(categories.filter((category) => category._id !== id));
     } catch (error) {
-      console.error("Error deleting category:", error);
+     
       toast.error("Failed to delete category");
     }
   };

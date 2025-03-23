@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
   const { token } = useSelector((state) => state.auth);
@@ -38,6 +39,7 @@ const Profile = () => {
       } catch (err) {
         setError('Failed to fetch profile data. Please try again later.');
         console.error('Error fetching profile:', err);
+        toast.error('Failed to fetch profile data. Please try again later.');
       }
     };
 
@@ -57,6 +59,7 @@ const Profile = () => {
       } catch (err) {
         setError('Failed to fetch categories. Please try again later.');
         console.error('Error fetching categories:', err);
+        toast.error('Failed to fetch categories. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -103,13 +106,15 @@ const Profile = () => {
 
       if (response.data.success) {
         alert('Profile updated successfully!');
+        toast.success('Profile updated successfully!')
         setEditMode(false); // Exit edit mode
       } else {
         setError(response.data.message || 'Failed to update profile.');
+        toast.error(response.data.message || 'Failed to update profile.');
       }
     } catch (err) {
       setError('Failed to update profile. Please try again.');
-      console.error('Error updating profile:', err);
+      toast.error('Failed to update profile. Please try again.');
     } finally {
       setLoading(false);
     }

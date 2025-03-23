@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import toast from "react-hot-toast";
 export default function PastServices() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [canceledTasks, setCanceledTasks] = useState([]);
@@ -17,9 +17,11 @@ export default function PastServices() {
         }); // Fetch tasks from the backend
         setCompletedTasks(response.data.completedTasks);
         setCanceledTasks(response.data.canceledTasks);
+        toast.success("Fetch Past Task Successfully");
       } catch (error) {
         setError("Failed to fetch tasks. Please try again later.");
-        console.error("Error fetching tasks:", error);
+        toast.error("Failed to fetch tasks. Please try again later.");
+      
       } finally {
         setLoading(false);
       }

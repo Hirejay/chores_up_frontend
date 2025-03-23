@@ -17,9 +17,7 @@ export default function ViewEPFO() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("Fetched Data:", response.data); // Log the entire response
-        console.log("Zero Fees Workers:", response.data.zeroFees); // Log zeroFees workers
-        console.log("Non-Zero Fees Workers:", response.data.nonZeroFees); // Log nonZeroFees workers
+ 
 
         if (response.data.success) {
           setZeroFeesWorkers(response.data.zeroFees || []);
@@ -29,7 +27,7 @@ export default function ViewEPFO() {
           toast.error("Failed to fetch EPFO worker details.");
         }
       } catch (error) {
-        console.error("Error fetching EPFO worker details:", error);
+        
         toast.error("Failed to fetch EPFO worker details.");
       }
     };
@@ -46,7 +44,7 @@ export default function ViewEPFO() {
       );
       toast.success("Email sent successfully!");
     } catch (error) {
-      console.error("Error sending email:", error);
+     
       toast.error("Failed to send email.");
     }
   };
@@ -76,7 +74,7 @@ export default function ViewEPFO() {
         setNonZeroFeesWorkers(response.data.nonZeroFees || []);
       }
     } catch (error) {
-      console.error("Error decreasing EPFO:", error);
+   
       toast.error("Failed to decrease EPFO.");
     }
   };

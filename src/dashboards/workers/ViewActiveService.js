@@ -35,7 +35,7 @@ function ViewActiveService() {
           toast.error("Failed to fetch tasks.");
         }
       } catch (error) {
-        console.error("Error fetching tasks:", error);
+       
         setError("Failed to fetch tasks. Please try again later.");
         toast.error("Failed to fetch tasks.");
       } finally {
@@ -67,7 +67,7 @@ function ViewActiveService() {
         toast.error("Failed to mark task as complete.");
       }
     } catch (error) {
-      console.error("Error marking task as complete:", error);
+    
       toast.error("Failed to mark task as complete.");
     }
   };
@@ -95,7 +95,7 @@ function ViewActiveService() {
         toast.error("Failed to generate QR Code.");
       }
     } catch (error) {
-      console.error("Error fetching QR Code:", error);
+     
       toast.error("Failed to fetch QR Code.");
     }
   };

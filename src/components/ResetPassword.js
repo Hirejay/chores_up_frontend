@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 const ResetPassword = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -14,12 +14,14 @@ const ResetPassword = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('/api/auth/reset-password', { email });
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/reset-password-token`, { email });
       if (response.data.success) {
         setMessage('A reset link has been sent to your email.');
+        toast.success("A reset link has been sent to your email.");
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to send reset link');
+      toast.error(err.response?.data?.message || 'Failed to send reset link');
     } finally {
       setLoading(false);
     }

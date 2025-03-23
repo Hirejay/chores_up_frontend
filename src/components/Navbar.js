@@ -11,11 +11,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token, user } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
   const handleLogout = async () => {
       try {
-          console.log("🔹 Logout Request Initiated");
+        
 
           const response = await axios.post(
               `${process.env.REACT_APP_API_BASE_URL}/auth/logout`,
@@ -27,7 +27,7 @@ const Navbar = () => {
               }
           );
 
-          console.log("✅ Logout Response:", response.data);
+         
 
           dispatch(logout()); // 🔥 Clear Redux state
           localStorage.removeItem("reduxState"); // 🔥 Ensure all stored state is cleared
@@ -35,7 +35,7 @@ const Navbar = () => {
           toast.success("Logged out successfully");
           navigate("/login");
       } catch (error) {
-          console.error("❌ Logout Error:", error.response ? error.response.data : error.message);
+       
           toast.error("Logout failed");
       }
   };

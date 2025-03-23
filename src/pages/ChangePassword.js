@@ -28,11 +28,10 @@ const ChangePassword = () => {
       setError('');
       setSuccess('');
 
-      console.log("🔍 Debug: Form submission started");
+     
       
       try {
-          console.log("📩 Sending request with data:", { email, currPassword:formData.currentPassword,newPassword:formData.newPassword });
-
+          
           const response = await axios.put(
               `${process.env.REACT_APP_API_BASE_URL}/auth/change-password`,
               { email, currPassword:formData.currentPassword,newPassword:formData.newPassword },  // ✅ Send email along with passwords
@@ -43,7 +42,7 @@ const ChangePassword = () => {
               }
           );
 
-          console.log("✅ Response received:", response);
+         
 
           setSuccess(response.data.message || 'Password changed successfully!');
           toast.success(response.data.message || 'Password changed successfully!');
@@ -52,20 +51,22 @@ const ChangePassword = () => {
               newPassword: ''
           });
       } catch (err) {
-          console.error("❌ Error occurred:", err);
-
+        
           if (err.response) {
               console.error("❗ Server Response Error:", err.response.data);
+              toast.error("❗ Server Response Error:", err.response.data);
           } else if (err.request) {
               console.error("❗ Network Error: No response received");
+              toast.error("❗ Network Error: No response received");
           } else {
               console.error("❗ Unexpected Error:", err.message);
+              toast.error("❗ Unexpected Error:", err.message);
           }
 
           setError(err.response?.data?.message || 'Password change failed');
           toast.error(err.response?.data?.message || 'Password change failed');
       } finally {
-          console.log("⏳ Request completed, updating UI...");
+          
           setLoading(false);
       }
   };

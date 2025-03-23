@@ -1,0 +1,13 @@
+.map-container {
+    width: 100%;
+    height: calc(100vh - 100px); /* Adjust height dynamically */
+    max-height: 600px; /* Prevent map from growing too large */
+    position: relative; /* Prevent overlap with other components */
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .map-page {
+    position: relative;
+    height: 100vh;
+  }
+  

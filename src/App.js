@@ -31,9 +31,10 @@ import { LocationProvider } from './contexts/LocationContext';
 
 import ViewActiveServiceMap from './dashboards/workers/ViewActiveServiceMap';
 import ViewActive from './dashboards/workers/ViewActive';
-import ChangePassword from './pages/ChangePassword';
+
 import ActiveServiceMap from './dashboards/clients/ActiveServiceMap';
 import ActiveServices from './dashboards/clients/ActiveServices';
+import DashBoardProfile from './pages/DashBoardProfile';
 function App() {
   return (
     <div className='min-h-screen flex flex-col'>
@@ -55,7 +56,7 @@ function App() {
 
           <Route element={<ProtectedRoute  allowed={['client']}/>}>
             <Route path="/dashboard/client" element={<ClientDashboard />}>
-              <Route index element={<ChangePassword/>} />  {/* Default route */}
+              <Route index element={<DashBoardProfile/>} />  {/* Default route */}
               <Route path="create-service-post" element={<CreateServicePost />} />
               <Route path="view-requested-service-posts" element={<ViewRequestedServicePosts />} />
               <Route path="active-service-posts" element={<ActiveServices/>}>
@@ -70,7 +71,7 @@ function App() {
 
           <Route element={<ProtectedRoute allowed={['admin']} />}>
             <Route path="/dashboard/admin" element={<AdminDashboard />}>
-              <Route index element={<ChangePassword/>} /> {/* Default route */}
+              <Route index element={<DashBoardProfile/>} /> {/* Default route */}
               <Route path="view-requested-workers" element={<ViewWorkerRequests/>} />
               <Route path="view-EPFO" element={<ViewEPFO />} />
               <Route path="view-active-workers" element={<ViewActiveWorkers />} />
@@ -85,7 +86,7 @@ function App() {
             <Route path="/dashboard/worker" element={<LocationProvider>
                 <WorkerDashboard />
               </LocationProvider>}>
-              <Route index element={<ChangePassword/>} />  {/* Default route */}
+              <Route index element={<DashBoardProfile/>} />  {/* Default route */}
               <Route path='profile' element={<Profile/>}/>
               <Route path="view-all-service-requests" element={<ViewAllServiceRequests/>} />
               {/* <Route path="view-active-service" element={<ViewActiveService/>} /> */}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 
 const ViewRequestedServicePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -48,7 +49,7 @@ const ViewRequestedServicePosts = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-8">Loading...</div>;
+    return <Spinner/>;
   }
 
   if (error) {
@@ -69,7 +70,7 @@ const ViewRequestedServicePosts = () => {
               <span className="font-medium">Category:</span> {post.category.categoryName}
             </p>
             <p className="text-gray-600 mb-2">
-              <span className="font-medium">Price:</span> ${post.category.price}
+              <span className="font-medium">Price:</span> ₹{post.category.price}
             </p>
             <p className="text-gray-600 mb-2">
               <span className="font-medium">Time:</span> {post.createdAt}

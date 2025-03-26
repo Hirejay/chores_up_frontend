@@ -21,7 +21,7 @@ export default function ClientDashboard() {
           </button>
         </div>
         <nav className="p-4 space-y-4">
-          <NavItem to="" icon={<RectangleEllipsis />} text="Change Password" />
+          <NavItem to="" icon={<ShieldUser/>} text="Dashboard Profile" />
           <NavItem to="create-service-post" icon={<Plus />} text="Create Service Post" />
           <NavItem to="view-requested-service-posts" icon={<List />} text="View Requested Service Posts" />
           <NavItem to="active-service-posts" icon={<Clock />} text="Active Service Posts" />
@@ -38,7 +38,7 @@ export default function ClientDashboard() {
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </motion.button>
 
-        <h1>cient dashboard</h1>
+        
         <Outlet></Outlet>
         
         

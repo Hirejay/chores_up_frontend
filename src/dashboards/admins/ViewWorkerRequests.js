@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-
+import Spinner from "../../components/Spinner";
 export default function ViewWorkerRequests() {
   const [workerRequests, setWorkerRequests] = useState([]);
   const { token } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchWorkerRequests = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_API_BASE_URL}/admin/profiles-pending`,
@@ -17,12 +19,14 @@ export default function ViewWorkerRequests() {
           }
         );
 
-       
+        toast.success('Worker Requests Successfully');
         setWorkerRequests(response.data?.pendingProfiles || []);
       } catch (error) {
        
         toast.error("Failed to fetch worker requests");
         setWorkerRequests([]);
+      }finally {
+        setLoading(false);
       }
     };
 
@@ -72,6 +76,10 @@ export default function ViewWorkerRequests() {
    
     }
   };
+
+  if (loading) {
+        return <Spinner/>;
+  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">

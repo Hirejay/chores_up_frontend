@@ -21,7 +21,7 @@ export default function AdminDashboard() {
           </button>
         </div>
         <nav className="p-4 space-y-4">
-          <NavItem to="" icon={<RectangleEllipsis />} text="Change Password" />
+          <NavItem to="" icon={<ShieldUser/>} text="Dashboard Profile" />
           <NavItem to="view-requested-workers" icon={<List />} text="View Requested Workers" />
           <NavItem to="view-EPFO" icon={<List />} text="View EPFO Details" />
           <NavItem to="view-active-workers" icon={<Clock />} text="View Active Workers" />
@@ -40,7 +40,7 @@ export default function AdminDashboard() {
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </motion.button>
 
-        <h1>admin dashboard</h1>
+        
         <Outlet></Outlet>
         
         

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 export default function PastServices() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [canceledTasks, setCanceledTasks] = useState([]);
@@ -31,7 +32,7 @@ export default function PastServices() {
   }, []);
 
   if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return <Spinner/>;
   }
 
   if (error) {

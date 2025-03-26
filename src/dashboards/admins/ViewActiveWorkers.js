@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 
 export default function ViewActiveWorkers() {
   const [activeWorkers, setActiveWorkers] = useState([]);
+   const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
 
   // Fetch active workers from the API
   useEffect(() => {
     const fetchActiveWorkers = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_API_BASE_URL}/admin/profiles-accepted`,
@@ -22,6 +25,8 @@ export default function ViewActiveWorkers() {
       } catch (error) {
         console.error("Error fetching active workers:", error);
         toast.error("Failed to fetch active workers");
+      }finally {
+        setLoading(false);
       }
     };
 
@@ -47,6 +52,10 @@ export default function ViewActiveWorkers() {
       toast.error("Error rejecting worker");
     }
   };
+
+  if (loading) {
+      return <Spinner/>;
+  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">

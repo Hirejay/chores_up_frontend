@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 
 export default function ViewEditCategory() {
   const [categories, setCategories] = useState([]);
@@ -9,6 +10,7 @@ export default function ViewEditCategory() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { token } = useSelector((state) => state.auth);
+  const [fetching,Setfetching]=useState(false);
 
   // Fetch categories
   useEffect(() => {
@@ -16,6 +18,7 @@ export default function ViewEditCategory() {
   }, []);
 
   const fetchCategories = async () => {
+    Setfetching(true);
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_BASE_URL}/category/all`,
@@ -25,8 +28,9 @@ export default function ViewEditCategory() {
       );
       setCategories(response.data.allCategory);
     } catch (error) {
-      
       toast.error("Failed to load categories");
+    }finally{
+      Setfetching(false);
     }
   };
 
@@ -85,6 +89,10 @@ export default function ViewEditCategory() {
       toast.error("Failed to delete category");
     }
   };
+
+  if(fetching){
+    return <Spinner/>;
+  }
 
   return (
     <div className="p-6">

@@ -23,8 +23,8 @@ export default function WorkerDashboard() {
           </button>
         </div>
         <nav className="p-4 space-y-4">
-          <NavItem to="" icon={<RectangleEllipsis />} text="Change Password" />
-          <NavItem to="profile" icon={<ShieldUser/>} text="Profile"/>
+          <NavItem to="" icon={<ShieldUser/>} text="Dashboard Profile" />
+          <NavItem to="profile" icon={<ShieldUser/>} text="Worker Profile"/>
           <NavItem to="view-all-service-requests" icon={<List />} text="View Requested Service Posts" />
           <NavItem to="view-active-service" icon={<Clock />} text="Active Service Posts" />
           <NavItem to="history-services" icon={<History />} text="Past Services" />

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 function ViewActive() {
   const { location, isTracking } = useContext(LocationContext); // Access location and tracking state
+ 
   const lastUpdateTime = useRef(Date.now()); // Track the last time the API was called
   const { token } = useSelector((state) => state.auth);
 
@@ -42,6 +43,9 @@ function ViewActive() {
       }
     }
   }, [isTracking, location]);
+
+
+ 
 
   return (
     <div>

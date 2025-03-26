@@ -7,7 +7,7 @@ import "leaflet-arrowheads";
 import { LocationContext } from "../../contexts/LocationContext";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-
+import Spinner from "../../components/Spinner";
 // Icons for map markers
 const motorcycleIcon = new L.Icon({
   iconUrl: "https://res.cloudinary.com/doqlcojpk/image/upload/v1742756388/CHORESUP/mapicon.webp",
@@ -28,7 +28,7 @@ function ViewAllServiceRequests() {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   // Fetch tasks from the API
   const fetchTasks = useCallback(async () => {
     try {
@@ -40,18 +40,24 @@ function ViewAllServiceRequests() {
       if (response.data?.tasks?.length) {
         setTasks(response.data.tasks);
       } else {
-        console.error("Invalid API response:", response.data);
-        toast.error("Invalid API response");
+        console.error("Sorry, There Is No Service Requests For Now:", response.data);
+        toast.error("Sorry, There Is No Service Requests For Now");
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);
       toast.error("Error fetching tasks");
+    }finally {
+      setLoading(false);
     }
   }, [token]);
 
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
+
+  if (loading) {
+    return <Spinner/>;
+  }
 
   return (
     <div className="flex flex-wrap gap-8 p-8 bg-gray-100 min-h-screen">

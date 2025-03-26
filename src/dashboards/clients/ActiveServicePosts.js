@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 
 const ActiveServicePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -34,7 +35,7 @@ const ActiveServicePosts = () => {
   }, [token]);
 
   if (loading) {
-    return <div className="text-center mt-8">Loading...</div>;
+    return <Spinner/>;
   }
 
   if (error) {

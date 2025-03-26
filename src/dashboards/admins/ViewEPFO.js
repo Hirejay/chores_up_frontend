@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-
+import Spinner from "../../components/Spinner";
 export default function ViewEPFO() {
   const [zeroFeesWorkers, setZeroFeesWorkers] = useState([]);
   const [nonZeroFeesWorkers, setNonZeroFeesWorkers] = useState([]);
   const [epfoDecreaseAmount, setEpfoDecreaseAmount] = useState({});
+  const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
 
   // Fetch workers from the API
   useEffect(() => {
     const fetchWorkers = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/epfo/all`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -29,6 +31,8 @@ export default function ViewEPFO() {
       } catch (error) {
         
         toast.error("Failed to fetch EPFO worker details.");
+      }finally {
+        setLoading(false);
       }
     };
 
@@ -78,6 +82,10 @@ export default function ViewEPFO() {
       toast.error("Failed to decrease EPFO.");
     }
   };
+
+  if (loading) {
+      return <Spinner/>;
+  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -144,7 +152,7 @@ export default function ViewEPFO() {
                   <td className="py-3 px-4 text-sm text-gray-900">
                     {(worker.worker.additionalDetails?.categorys || []).map((cat) => cat.categoryName).join(", ")}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-900">${worker.fees}</td>
+                  <td className="py-3 px-4 text-sm text-gray-900">₹{worker.fees}</td>
                   <td className="py-3 px-4 text-sm">
                     <button
                       onClick={() => handleSendEmail(worker.worker._id, worker.fees)}

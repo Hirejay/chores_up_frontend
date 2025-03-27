@@ -144,10 +144,10 @@ function PopupModal({ task, onClose, onTaskAccepted }) {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      if (response.data?.route) {
-        setRoute(response.data.route.geometry);
-        setDistance(response.data.route.distance);
-        setDuration(response.data.route.duration);
+      if (response.data.success) {
+        setRoute(response.data.geometry);
+        setDistance(response.data.distance);
+        setDuration(response.data.duration);
       } else {
         console.error("Invalid route response:", response.data);
         toast.error("Invalid route response");

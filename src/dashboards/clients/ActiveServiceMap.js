@@ -76,6 +76,8 @@ function ActiveServiceMap() {
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
+        console.log("response",response.data);
+
         if (response.data.success) {
           const { task, geometry } = response.data;
           setClientLocation(task.clientLocation);

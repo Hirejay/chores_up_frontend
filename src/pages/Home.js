@@ -125,7 +125,7 @@ const HomePage = () => {
           <p className="mb-4">© 2023 Household Services Platform. All rights reserved.</p>
           <div className="flex justify-center space-x-6">
             <Link to="/about" className="hover:text-blue-500">About Us</Link>
-            <Link to="/contact" className="hover:text-blue-500">Contact</Link>
+            {/* <Link to="/contact" className="hover:text-blue-500">Contact</Link> */}
             <Link to="/privacy" className="hover:text-blue-500">Privacy Policy</Link>
           </div>
         </div>

@@ -122,7 +122,7 @@ const HomePage = () => {
       {/* Footer */}
       <div className="bg-gray-900 text-white py-8">
         <div className="container mx-auto text-center">
-          <p className="mb-4">© 2023 Household Services Platform. All rights reserved.</p>
+          <p className="mb-4">© 2024 Household Services Platform. All rights reserved.</p>
           <div className="flex justify-center space-x-6">
             <Link to="/about" className="hover:text-blue-500">About Us</Link>
             {/* <Link to="/contact" className="hover:text-blue-500">Contact</Link> */}

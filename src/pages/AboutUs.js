@@ -36,7 +36,7 @@ const AboutUs = () => {
           <div className="md:w-1/2">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">Our Story</h2>
             <p className="text-gray-600 mb-4">
-              ChoresUp was founded in 2020 with a simple mission: to make household services more accessible, reliable, and convenient for everyone.
+              ChoresUp was founded in 2024 with a simple mission: to make household services more accessible, reliable, and convenient for everyone.
             </p>
             <p className="text-gray-600 mb-4">
               Frustrated by the difficulty of finding trustworthy service providers, our founders set out to create a platform that would connect homeowners with vetted professionals at the tap of a button.
@@ -128,28 +128,34 @@ const AboutUs = () => {
       <div className="bg-gray-200 py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Meet Our Leadership Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {[
-              {
-                name: "Alex Johnson",
-                role: "CEO & Co-founder",
-                bio: "Alex brings 15 years of experience in the home services industry and a passion for customer satisfaction."
+              { 
+                name: "Jay Hire", 
+                role: "Student", 
+                bio: "Jay is a passionate software developer focused on building efficient and user-friendly platforms to solve real-world problems." 
               },
-              {
-                name: "Maria Garcia",
-                role: "CTO & Co-founder",
-                bio: "Maria is a tech innovator who has built platforms that connect service providers with customers."
+              { 
+                name: "Rakshak Gharat", 
+                role: "Student", 
+                bio: "Rakshak is a creative thinker and developer with a keen interest in full-stack development and scalable solutions." 
               },
-              {
-                name: "James Wilson",
-                role: "Head of Operations",
-                bio: "James ensures our service providers meet our high standards and customers receive exceptional service."
+              { 
+                name: "Yash Sangale", 
+                role: "Student", 
+                bio: "Yash brings strong backend development skills and ensures robust and reliable functionality in every project." 
+              },
+              { 
+                name: "Hritik Raj", 
+                role: "Student", 
+                bio: "Hritik specializes in UI/UX design and works to deliver seamless and intuitive user experiences." 
               }
             ].map((member, index) => (
               <motion.div 
                 key={index}
                 whileHover={{ y: -5 }}
-                className="bg-white p-6 rounded-lg shadow-md text-center"
+                className="bg-white p-6 rounded-lg shadow-md text-center flex-shrink-0"
+                style={{ width: "280px" }} // Fixed width for consistent sizing
               >
                 <div className="w-32 h-32 bg-gray-700 text-white rounded-full mx-auto mb-4 flex items-center justify-center text-4xl font-bold">
                   {member.name.split(' ').map(n => n[0]).join('')}
